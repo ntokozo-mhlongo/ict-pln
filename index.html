@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ntokozo Mhlongo • ICT PLN</title>
+  <meta name="description" content="A professional ICT-themed website curating my PLN across platforms: About.me, X, YouTube, Scoop.it, SlideShare, Edutopia, and Microsoft Educator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;          /* deep navy */
+      --panel:#0f172a;       /* slate-900 */
+      --panel-2:#121a2f;     /* slightly brighter */
+      --card:#0e1a33;
+      --text:#e6eefc;        /* off-white */
+      --muted:#97a4c0;       /* slate-300 */
+      --brand:#4f46e5;       /* indigo-600 */
+      --brand-2:#22d3ee;     /* cyan-400 */
+      --accent:#14b8a6;      /* teal-500 */
+      --ring: rgba(79,70,229,.35);
+      --shadow: 0 10px 30px rgba(10, 16, 35, .6);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:linear-gradient(180deg,var(--bg),#0c1530 60%, #0a1738); color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; scroll-behavior:smooth}
+    a{color:var(--brand-2); text-decoration:none}
+    a:hover{opacity:.9; text-decoration:underline}
+
+    /* NAV */
+    .nav{position:sticky; top:0; z-index:100; background:rgba(10,16,35,.7); backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
+    .brand{display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.2px}
+    .brand .dot{width:10px; height:10px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); border-radius:50%; box-shadow:0 0 0 6px var(--ring)}
+    .menu{display:flex; gap:14px; flex-wrap:wrap}
+    .menu a{padding:10px 14px; border-radius:12px; background:transparent; border:1px solid rgba(255,255,255,.08)}
+    .menu a:hover{background:rgba(255,255,255,.06)}
+
+    /* HERO */
+    .hero{max-width:1200px; margin:40px auto 20px; padding:0 20px}
+    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:26px}
+    .hero-card{background:radial-gradient(1200px 600px at -10% -20%, rgba(79,70,229,.35), transparent 40%), linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px}
+    .hero h1{font-size:40px; line-height:1.1; margin:0 0 12px}
+    .hero p{color:var(--muted); font-size:16px; margin:0 0 18px}
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{font-size:12px; padding:8px 10px; border:1px dashed rgba(255,255,255,.12); border-radius:999px}
+
+    /* SECTIONS */
+    section{max-width:1200px; margin:34px auto; padding:0 20px}
+    .section-card{background:linear-gradient(180deg, var(--panel), var(--panel-2)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px}
+    .section-header{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:14px}
+    h2{margin:0; font-size:26px}
+    .sub{color:var(--muted); font-size:14px}
+
+    .grid{display:grid; gap:18px}
+    .grid.two{grid-template-columns: repeat(2, minmax(0, 1fr))}
+    .grid.three{grid-template-columns: repeat(3, minmax(0, 1fr))}
+    @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} .grid.two,.grid.three{grid-template-columns:1fr} }
+
+    /* CARDS & CTAs */
+    .card{background:linear-gradient(180deg, #0f1a33, #0c1831); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px; position:relative}
+    .card h3{margin:0 0 6px}
+    .card p{color:var(--muted); font-size:14px}
+    .cta{display:inline-block; margin-top:10px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04)}
+    .cta:hover{background:rgba(255,255,255,.08)}
+
+    /* Placeholders for user-supplied images/logos */
+    .logo-slot{width:110px; height:110px; border-radius:14px; background:linear-gradient(135deg, #0f1a33, #0b1530); border:1px dashed rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--muted)}
+
+    /* Responsive embed wrappers */
+    .embed{position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow)}
+    .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+    /* Scoop.it framed style */
+    .scoop-frame{border-radius:16px; border:1px solid rgba(79,70,229,.35); box-shadow:0 0 0 8px rgba(79,70,229,.08), 0 12px 28px rgba(0,0,0,.45); padding:14px; background:linear-gradient(180deg,#0f1630,#0b1330)}
+    .scoop-grid{display:grid; gap:16px; grid-template-columns:repeat(2, minmax(0,1fr))}
+    @media (max-width:900px){ .scoop-grid{grid-template-columns:1fr} }
+
+    /* Footer */
+    footer{max-width:1200px; margin:40px auto 80px; padding:0 20px; color:var(--muted); font-size:13px}
+    .separator{height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); margin:26px 0}
+    .to-top{position:fixed; right:18px; bottom:18px; padding:12px 14px; border-radius:999px; background:var(--brand); color:white; border:0; box-shadow:0 12px 20px rgba(79,70,229,.35); cursor:pointer}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><span class="dot"></span> <span>ICT • Professional Learning Network</span></div>
+      <div class="menu" role="navigation" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#aboutme">About.me</a>
+        <a href="#x">X</a>
+        <a href="#youtube">YouTube</a>
+        <a href="#scoopit">Scoop.it</a>
+        <a href="#slideshare">SlideShare</a>
+        <a href="#edutopia">Edutopia</a>
+        <a href="#ms-educator">Microsoft Educator</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / HOME -->
+  <header id="home" class="hero">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <h1>ICT Professional Learning Network</h1>
+        <p>
+          Welcome! I am Miss.Mhlongo. This space curates my professional learning network (PLN) across platforms. A PLN is the purposeful web of people, communities, tools, and resources we learn with and from. In the ICT field, a strong PLN accelerates skill growth, exposes you to new pedagogies, and keeps you current with rapid technological change.
+        </p>
+        <div class="chips">
+          <span class="chip">Collaboration</span>
+          <span class="chip">Knowledge Sharing</span>
+          <span class="chip">EdTech Innovation</span>
+          <span class="chip">Digital Citizenship</span>
+          <span class="chip">Lifelong Learning</span>
+        </div>
+        <p class="sub" style="margin-top:10px">Explore each section to see how I use these platforms to engage, create, and reflect.</p>
+      </div>
+      <div class="hero-card">
+        <div class="logo-slot">
+		<img src="giggles.jpg" width="250" height="150">
+		</div>
+        <div class="separator"></div>
+        <div class="card">
+          <h3>How a PLN benefits ICT professionals</h3>
+          <p>
+            • Real-time insights from practitioners • Faster problem-solving via collective intelligence • Showcasing your work and building credibility • Access to diverse perspectives for inclusive, future-ready classrooms.
+          </p>
+          <a class="cta" href="#x">Jump to social updates →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card" style="margin-top:22px">
+      <div class="section-header">
+        <h2>Interactive Map of My PLN</h2>
+        <span class="sub">Engage with the map to see an overview of my PLN Platforms.</span>
+      </div>
+      <div class="embed" style="aspect-ratio:auto; height:500px">
+        <!-- H5P / Lumi embed -->
+        <iframe src="https://app.lumi.education/api/v1/run/Dl9oKM/embed" width="1088" height="500" frameborder="0" allowfullscreen="allowfullscreen" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
+      </div>
+      <script src="https://app.Lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+    </div>
+  </header>
+
+  <!-- ABOUT.ME -->
+  <section id="aboutme">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>About.me</h2>
+        <span class="sub">Your Professional Landing Page</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		   <img src="icon_preview.d28ceb27.png" width="200" height="150">
+		   </div>
+          <h3>What is About.me?</h3>
+          <p>About.me is a personal profile hub where you present your bio, portfolio links, and contact details in one professional space. In a PLN, it acts as your central identity-helping others discover your work and connect across platforms.</p>
+          <a class="cta" href="https://about.me/ntokozomhlongo" target="_blank" rel="noopener">Visit my About.me →</a>
+        </div>
+        <div class="card">
+          <h3>How it supports my PLN</h3>
+          <p>• Creates a memorable, shareable profile • Consolidates links to artifacts (videos, slides, articles) • Signals credibility and invites collaboration.</p>
+          <div style="height:10px"></div>
+          <div class="grid two">
+            <a class="cta" href="https://www.diigo.com/profile/ntokozomhlongo" target="_blank" rel="noopener">My Diigo bookmarks</a>
+            <a class="cta" href="#slideshare">Recent slides</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- X (Twitter) -->
+  <section id="x">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>X (Twitter)</h2>
+        <span class="sub">Real-time Dialogue and Professional discourse</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="x-logo.png" alt="X logo" width="200" height="150">
+		  </div>
+          <h3>Why X matters for a PLN</h3>
+          <p>X enables informal learning through threads, Lists, and Spaces. It’s ideal for sharing insights, asking questions, and engaging in hashtag-driven communities like #edtech and #ICTinEducation. Across are posts from my timeline, engaging with ICT and Education Networks.</p>
+          <a class="cta" href="https://x.com/NtokozoGMhlongo" target="_blank" rel="noopener">Follow @NtokozoGMhlongo →</a>
+		  <a class="twitter-timeline" href="https://twitter.com/NtokozoGMhlongo/lists/1961958553566196140?ref_src=twsrc%5Etfw">A Twitter List by NtokozoGMhlongo</a>
+
+        </div>
+        <div class="card">
+          <h3>Featured posts & List</h3>
+          <p class="sub">Embedded tweets and curated list feed:</p>
+
+          <!-- Embedded tweets provided -->
+          <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Great question. I Would use robotics to foster CAPS skills such as collaboration, computational thinking, and digital fluency. What about you? <a href="https://t.co/Yu1yUftDkp">https://t.co/Yu1yUftDkp</a></p>&mdash; Ntokozo Mhlongo (@NtokozoGMhlongo) <a href="https://twitter.com/NtokozoGMhlongo/status/1961931349968703842?ref_src=twsrc%5Etfw">August 30, 2025</a></blockquote>
+
+
+          <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I Developed an AI Learning for students with ADHD.<br><br>This AI Agent can:<br><br>- Turn lectures into accurate, easy-to-read notes<br><br>- Simplify complex concepts for better understanding<br><br>- Help students with ADHD focus on learning, not frantic note-taking <a href="https://t.co/fNeB3P5V8Q">pic.twitter.com/fNeB3P5V8Q</a></p>&mdash; Adullah❤️‍🔥 (@Adullahioswea) <a href="https://twitter.com/Adullahioswea/status/1955783350200754442?ref_src=twsrc%5Etfw">August 14, 2025</a></blockquote>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE -->
+  <section id="youtube">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>YouTube</h2>
+        <span class="sub">Publishing Tutorials, Talks, and Demonstrations</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="yt.png" width="200" height="150">
+		  </div>
+          <h3>Why YouTube for a PLN?</h3>
+          <p>Video enables rich demonstrations-walkthroughs, lectures, and reflections. It’s a discoverable portfolio of practice that invites comments and peer feedback. Below is a Youtube Video on my Channel about AR and VR in Education. Following is a video from one of the Channels I have subscribed to: Mr.Long. He creatives useful tutorial CAT videos.</p>
+          <div class="embed">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/_CjHgCCmk3E?si=7A59vfyJ-oxrl59P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="card">
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/YjfeIPEjEBs?si=Jc4mRTAQR_SLpy-l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <a class="cta" href="#slideshare">See related SlideShare decks →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOOP.IT -->
+  <section id="scoopit">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>Scoop.it</h2>
+        <span class="sub">Curated reading that powers reflective practice</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="scoop.png" width="200" height="150">
+		  </div>
+          <h3>How Scoop.it supports my PLN</h3>
+          <p>Scoop.it is a content curation platform that helps users find, organize, and share web content on specific topics. On the side, are some Edtech articles that I have scooped and bookmarked into one Folder. Feel free to check out my profile to check out my curation and community.</p>
+          <a class="cta" href="https://www.scoop.it/u/ntokozo-mhlongo" target="_blank" rel="noopener">Visit my Scoop.it profile →</a>
+        </div>
+        <div class="card scoop-frame">
+          <h3 style="margin-top:0">Featured scoops</h3>
+          <div class="scoop-grid">
+            <div>
+             <div id='scoopit-container-4167449225'><a href='https://www.scoop.it/topic/developing-a-good-digital-footprint/p/4167449225/2025/08/29/the-ai-in-education-arms-race-google-vs-openai'>The AI in Education Arms Race: Google vs OpenAI –</a></div><script type='text/javascript' src='https://www.scoop.it/embed-scoop/4167449225.js?maxwidth=457' ></script>
+            </div>
+            </div>
+            <div>
+              <div id='scoopit-container-4167458066'><a href='https://www.scoop.it/topic/developing-a-good-digital-footprint/p/4167458066/2025/08/30/8-core-digital-literacy-skills-for-2030'>8 Core Digital Literacy Skills for 2030</a></div><script type='text/javascript' src='https://www.scoop.it/embed-scoop/4167458066.js?maxwidth=457' ></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDESHARE -->
+  <section id="slideshare">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>SlideShare</h2>
+        <span class="sub">PowerPoint Presentations for talks and resources</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="slideshare.png" width="200" height="100">
+		  </div>
+          <h3>Why SlideShare?</h3>
+          <p>SlideShare is a discoverable library for presentations. Hosting presentations extends the life of workshops and talks, making it easy for your PLN to reuse and adapt your materials. Across are some of my Slideshare Curations.</p>
+          <a class="cta" href="https://www.slideshare.net/gmhlongo153" target="_blank" rel="noopener">My SlideShare profile →</a>
+        </div>
+        <div class="card">
+          <div class="grid two">
+            <div class="embed">
+              <iframe src="https://www.slideshare.net/slideshow/embed_code/key/tNdaeopOzvMZhT?hostedIn=slideshare&page=upload" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+            </div>
+            <div class="embed">
+              <iframe src="https://www.slideshare.net/slideshow/embed_code/key/CqwpA5gdw0QC2f?hostedIn=slideshare&page=upload" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUTOPIA -->
+  <section id="edutopia">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>Edutopia</h2>
+        <span class="sub">Research Informed Classroom Strategies</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="edu.png" width="250" height="120">
+		  </div>
+          <h3>What is Edutopia?</h3>
+          <p>Edutopia publishes practical, research-aligned strategies across grade levels and subjects. I use it to discover classroom-tested methods and to spark reflective dialogue in my PLN.</p>
+          <a class="cta" href="https://www.edutopia.org/my-homeroom" target="_blank" rel="noopener">Visit my Edutopia homeroom →</a>
+        </div>
+        <div class="card">
+          <h3>PLN connection</h3>
+          <p>• Share articles to X with key takeaways • Adapt strategies into lesson prototypes • Invite peers to co-annotate readings and discuss implementation.</p>
+          <div class="grid two">
+            <a class="cta" href="#x">Discuss on X</a>
+            <a class="cta" href="#scoopit">Curate to Scoop.it</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MICROSOFT EDUCATOR -->
+  <section id="ms-educator">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>Microsoft Educator</h2>
+        <span class="sub">Badges and Learning Pathways</span>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <div class="logo-slot">
+		  <img src="microsoft.png" width="200" height="150">
+		  </div>
+          <h3>Why Microsoft Educator?</h3>
+          <p>The Microsoft Learn Educator space provides role-based learning, badges, and certifications. This validates skills, guides professional growth, and signals competencies to your PLN and employers.</p>
+          <a class="cta" href="https://learn.microsoft.com/en-us/users/ntokozomhlongo-3561/achievements" target="_blank" rel="noopener">See my achievements →</a>
+        </div>
+        <div class="card">
+          <h3>Certificates</h3>
+          <p> I can use what I learn to:Translate badges into classroom experiments • Share reflections on X and SlideShare. </p>
+          <div class="grid one">
+		  <div>
+            <img src="certificate 1.png" width="450" height="300">
+			</div>
+			<div>
+            <img src="certificate 2.png" width="450" height="300">
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="separator"></div>
+    <div>© <span id="year"></span> Ntokozo Mhlongo • ICT PLN  </div>
+  </footer>
+
+  <button class="to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <!-- Scripts placed at end for performance -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
